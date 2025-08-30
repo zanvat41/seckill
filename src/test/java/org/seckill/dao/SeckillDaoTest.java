@@ -21,7 +21,7 @@ public class SeckillDaoTest {
     private SeckillDao seckillDao;
 
     @Test
-    public void queryById() {
+    public void testQueryById() {
         long id = 1000;
         Seckill seckill = seckillDao.queryById(id);
         System.out.println(seckill.getName());
@@ -29,7 +29,7 @@ public class SeckillDaoTest {
     }
 
     @Test
-    public void queryAll() {
+    public void testQueryAll() {
         List<Seckill> seckills = seckillDao.queryAll(0, 100);
         for (Seckill seckill : seckills) {
             System.out.println(seckill);
@@ -37,7 +37,7 @@ public class SeckillDaoTest {
     }
 
     @Test
-    public void reduceNumber() {
+    public void testReduceNumber() {
         Date killTime = new Date();
         int updateCount = seckillDao.reduceNumber(1000L, killTime);
         System.out.println("updateCount=" + updateCount);

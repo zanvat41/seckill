@@ -18,7 +18,7 @@ public class SuccessKilledDaoTest {
     private SuccessKilledDao successKilledDao;
 
     @Test
-    public void insertSuccessKilled() {
+    public void testInsertSuccessKilled() {
         long id = 1000;
         long phone = 13631231234L;
         int insertCount = successKilledDao.insertSuccessKilled(id, phone);
@@ -26,7 +26,7 @@ public class SuccessKilledDaoTest {
     }
 
     @Test
-    public void queryByIdWithSeckill() {
+    public void testQueryByIdWithSeckill() {
         long id = 1000;
         long phone = 13631231234L;
         SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(id, phone);
