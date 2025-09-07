@@ -19,7 +19,7 @@ public class SuccessKilledDaoTest extends BaseTest {
     @Test
     public void testInsertSuccessKilled() {
         long id = 1000;
-        long phone = 13631231234L;
+        long phone = 13333333333L;
         int insertCount = successKilledDao.insertSuccessKilled(id, phone);
         System.out.println("insertCount=" + insertCount);
     }
@@ -27,7 +27,7 @@ public class SuccessKilledDaoTest extends BaseTest {
     @Test
     public void testQueryByIdWithSeckill() {
         long id = 1000;
-        long phone = 13631231234L;
+        long phone = 13333333333L;
         SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(id, phone);
         System.out.println(successKilled);
         System.out.println(successKilled.getSeckill());

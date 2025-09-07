@@ -58,7 +58,7 @@ public class SeckillServiceImplTest extends BaseTest {
     @Test
     public void testExecuteSeckillProcedure() throws Exception {
         long seckillId = 1000;
-        long phone = 13631231255L;
+        long phone = 13333333333L;
         Exposer exposer = seckillService.exportSeckillUrl(seckillId);
         if (exposer.isExposed()) {
             String md5 = exposer.getMd5();
