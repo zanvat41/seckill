@@ -12,7 +12,6 @@ public class SuccessKilled {
 
     private Date creteTime;
 
-    // 多对一的复合属性
     private Seckill seckill;
 
     public long getSeckillId() {
