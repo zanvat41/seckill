@@ -27,18 +27,11 @@ public class SeckillController {
     @Autowired
     private SeckillService seckillService;
 
-    @RequestMapping(value = "/lsls", method = RequestMethod.GET)
-    public String lsls() {
-        // 获取列表页
-        return "lslsl";// WEB-INF/jsp/"list".jsp
-    }
-
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         // 获取列表页
         List<Seckill> list = seckillService.getSeckillList();
         model.addAttribute("list", list);
-        // lslsl.jsp + model = ModelAndView
         return "list";// WEB-INF/jsp/"list".jsp
     }
 
@@ -85,8 +78,8 @@ public class SeckillController {
         }
         try {
             // 存储过程调用
-            //SeckillExecution execution = seckillService.executeSeckillProcedure(seckillId, phone, md5);
-            SeckillExecution execution = seckillService.executeSeckill(seckillId, phone, md5);
+            SeckillExecution execution = seckillService.executeSeckillProcedure(seckillId, phone, md5);
+            //SeckillExecution execution = seckillService.executeSeckill(seckillId, phone, md5);
             return new SeckillResult<SeckillExecution>(true, execution);
         } catch (RepeatKillException e) {
             SeckillExecution execution = new SeckillExecution(seckillId, SeckillStateEnum.REPEAT_KILL);

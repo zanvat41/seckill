@@ -9,27 +9,27 @@
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-    <!-- 配置SpringMVC -->
-    <!-- 1.开启SpringMVC注解模式 -->
-    <!-- 简化配置：
-        (1)自动注册DefaultAnootationHandlerMapping,AnotationMethodHandlerAdapter
-        (2)提供一些列：数据绑定，数字和日期的format @NumberFormat, @DateTimeFormat, xml,json默认读写支持
+    <!-- SpringMVC Configuration -->
+    <!-- 1. Enable SpringMVC Annotation Mode -->
+    <!-- Simplified configuration:
+    (1) Automatically registers DefaultAnnotationHandlerMapping and AnnotationMethodHandlerAdapter
+    (2) Provides built-in support for: data binding, number/date formatting (@NumberFormat, @DateTimeFormat), default XML/JSON read-write support
     -->
     <mvc:annotation-driven/>
 
-    <!-- 2.静态资源默认servlet配置
-        (1)加入对静态资源的处理：js,gif,png
-        (2)允许使用"/"做整体映射
-     -->
+    <!-- 2. Default Servlet Configuration for Static Resources
+    (1) Enables handling of static resources: js, gif, png
+    (2) Allows using "/" for global mapping
+    -->
     <mvc:default-servlet-handler/>
 
-    <!-- 3.配置jsp 显示ViewResolver -->
+    <!-- 3. Configure JSP ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!-- 4.扫描web相关的bean -->
+    <!-- 4. Scan for Web-related Beans -->
     <context:component-scan base-package="org.seckill.web" />
 </beans>

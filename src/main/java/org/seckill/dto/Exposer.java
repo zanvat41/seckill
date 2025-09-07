@@ -2,22 +2,22 @@ package org.seckill.dto;
 
 public class Exposer {
 
-    // 是否开启秒杀
+    // is seckill open
     private boolean exposed;
 
-    // 一种加密措施
+    // encrypt
     private String md5;
 
     // id
     private long seckillId;
 
-    // 系统当前时间（毫秒）
+    // system time for now
     private long now;
 
-    // 开启时间
+    // seckill start time
     private long start;
 
-    // 结束时间
+    // seckill end time
     private long end;
 
     public Exposer(boolean exposed, String md5, long seckillId) {

@@ -50,9 +50,9 @@
 		</div>
 	</div>
 
-	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<!-- jQuery file. Must be introduced before bootstrap.min.js -->
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<!-- Bootstrap core JavaScript file -->
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

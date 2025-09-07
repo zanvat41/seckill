@@ -11,14 +11,14 @@ import java.util.List;
 
 public interface SeckillService {
     /**
-     * 查询所有秒杀记录
+     * find all seckill records
      *
      * @return
      */
     List<Seckill> getSeckillList();
 
     /**
-     * 查询单个秒杀记录
+     * find one seckill record
      *
      * @param seckillId
      * @return
@@ -26,7 +26,7 @@ public interface SeckillService {
     Seckill getById(long seckillId);
 
     /**
-     * 秒杀开启时输出秒杀接口地址，否则输出系统时间和秒杀时间
+     * return seckill url when seckill open, or return system time and seckill period
      *
      * @param seckillId
      * @return
@@ -34,7 +34,7 @@ public interface SeckillService {
     Exposer exportSeckillUrl(long seckillId);
 
     /**
-     * 执行秒杀操作
+     * execute seckill
      *
      * @param seckillId
      * @param userPhone
@@ -48,7 +48,7 @@ public interface SeckillService {
             throws SeckillException, RepeatKillException, SeckillCloseException;
 
     /**
-     * 执行秒杀操作by存储过程
+     * execute seckill by calling stored mysql procedure
      *
      * @param seckillId
      * @param userPhone
@@ -58,8 +58,6 @@ public interface SeckillService {
      * @throws RepeatKillException
      * @throws SeckillCloseException
      */
-    /*
     SeckillExecution executeSeckillProcedure(long seckillId, long userPhone, String md5)
             throws SeckillException, RepeatKillException, SeckillCloseException;
-    */
 }

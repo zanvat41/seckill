@@ -7,13 +7,13 @@ public class SeckillExecution {
 
     private long seckillId;
 
-    // 秒杀执行结果状态
+    // seckill execution result state
     private int state;
 
-    // 状态标识
+    // state info
     private String stateInfo;
 
-    // 秒杀成功对象
+    // SuccessKilled object
     private SuccessKilled successKilled;
 
     public SeckillExecution(long seckillId, SeckillStateEnum stateEnum, SuccessKilled successKilled) {

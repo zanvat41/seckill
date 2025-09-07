@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-	<!-- 登录弹出层，输入电话 -->
+	<!-- Login pop-up layer for entering the phone number -->
 	<div id="killPhoneModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -49,19 +49,19 @@
 		</div>
 	</div>
 
-	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<!-- jQuery file. Must be introduced before bootstrap.min.js -->
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<!-- Bootstrap core JavaScript file -->
 	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<!-- jQuery cookie操作插件 -->
+	<!-- jQuery cookie operation plugin -->
 	<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	<!-- jQery countDonw倒计时插件  -->
+	<!-- jQuery countdown plugin -->
 	<script src="//cdn.bootcss.com/jquery.countdown/2.1.0/jquery.countdown.min.js"></script>
-	<!-- 开始编写交互逻辑 -->
+	<!-- Start writing the interaction logic -->
 	<script src="${basePath}resources/js/seckill.js"  type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function(){
-			//使用EL表达式传入参数
+			// Pass parameters using the EL expression
 			seckill.detail.init({
 				seckillId : ${seckill.seckillId},
 				startTime : ${seckill.startTime.time},//毫秒

@@ -16,40 +16,40 @@ var seckill = {
 	},
 	//  seckill logic
 	handleSeckill : function(seckillId, node) {
-		// 获取秒杀地址，控制显示逻辑，执行秒杀
+		// get seckill url, handle display logic, execute seckill
 		node.hide().html('<button class="btn btn-primary btn-lg" id="killBtn">Start Seckill</button>');
 		console.log('exposerUrl=' + seckill.URL.exposer(seckillId));//TODO
 		$.post(seckill.URL.exposer(seckillId), {}, function(result) {
-			// 在回调函数中，执行交互流程
+			// Execute interactive flow in callback function
 			if (result && result['success']) {
 				var exposer = result['data'];
 				if (exposer['exposed']) {
-					// 开启秒杀
+					// start seckill
 					var md5 = exposer['md5'];
 					var killUrl = seckill.URL.execution(seckillId, md5);
 					console.log('killUrl=' + killUrl);//TODO
 					$('#killBtn').one('click', function() {
-						// 执行秒杀请求
-						// 1.先禁用按钮
+						// execute seckill request
+						// 1.disable button
 						$(this).addClass('disabled');
-						// 2.发送秒杀请求
+						// 2.send seckill request
 						$.post(killUrl, {}, function(result) {
 							if (result && result['success']) {
 								var killResult = result['data'];
 								var state = killResult['state'];
 								var stateInfo = killResult['stateInfo'];
-								// 3.显示秒杀结果
+								// 3.display seckill result
 								node.html('<span class="label label-success">' + stateInfo + '</span>');
 							}
 						});
 					});
 					node.show();
 				} else {
-					// 未开启秒杀
+					// seckill not open
 					var now = exposer['now'];
 					var start = exposer['start'];
 					var end = exposer['end'];
-					// 重新计算计时逻辑
+					// restart countdown flow
 					seckill.countdown(seckillId, now, start, end);
 				}
 			} else {
@@ -57,7 +57,7 @@ var seckill = {
 			}
 		});
 	},
-	// 验证手机号
+	// validate phone number
 	validatePhone : function(phone) {
 		if (phone && phone.length == 11 && !isNaN(phone)) {
 			return true;
@@ -65,76 +65,75 @@ var seckill = {
 			return false;
 		}
 	},
-	// 倒计时
+	// countdown logic
 	countdown : function(seckillId, nowTime, startTime, endTime) {
-		// 时间判断
+		// check time
 		var seckillBox = $('#seckillBox');
 		if (nowTime > endTime) {
-			// 秒杀结束
+			// seckill ended
 			seckillBox.html('Seckill Ended');
 		} else if (nowTime < startTime) {
-			// 秒杀未开始，计时事件绑定
+			// seckill not open, countdown event binding
 			var killTime = new Date(startTime + 1000);
 			seckillBox.countdown(killTime, function(event) {
-				// 时间格式
+				// time format
 				var format = event.strftime('Seckill Countdown: %D days %H hrs %M mins %S s');
 				seckillBox.html(format);
-				// 时间完成后回调事件
+				// callback after countdown finishes
 			}).on('finish.countdown', function() {
-				// 获取秒杀地址，控制显示逻辑，执行秒杀
+				// get seckill url, handle display logic, execute seckill
 				seckill.handleSeckill(seckillId, seckillBox);
 			});
 		} else {
-			// 秒杀开始
+			// seckill starts
 			seckill.handleSeckill(seckillId ,seckillBox);
 		}
 	},
 	// detail page seckill logic
 	detail : {
 		init : function(params) {
-			// 用户手机验证和登录，计时交互
-			// 规划我们的交互流程
-			// 在cookie中查找手机号
+            // User phone number verification & login, countdown interaction
+            // Design the interaction flow
+            // Check for phone number in cookies
 			var killPhone = $.cookie('killPhone');
 			var startTime = params['startTime'];
 			var endTime = params['endTime'];
 			var seckillId = params['seckillId'];
-			// 验证手机号
+			// validate phone number
 			if (!seckill.validatePhone(killPhone)) {
-				// 绑定phone
-				// 控制输出
+				// bind phone number
+				// control display
 				var killPhoneModal = $('#killPhoneModal');
 				killPhoneModal.modal({
-					show : true,// 显示弹出层
-					backdrop : 'static',// 禁止位置关闭
-					keyboard : false
-				// 关闭键盘事件
+					show : true,// display modal
+					backdrop : 'static',// disable location toggle
+					keyboard : false // close keyboard event
 				})
 				$('#killPhoneBtn').click(function() {
 					var inputPhone = $('#killphoneKey').val();
 					console.log('inputPhone='+inputPhone);//TODO
 					if (seckill.validatePhone(inputPhone)) {
-						// 电话写入cookie
+						// add phone number to cookie
 						$.cookie('killPhone', inputPhone, {
 							expires : 7,
 							path : '/seckill'
 						});
-						// 刷新页面
+						// refresh page
 						window.location.reload();
 					} else {
 						$('#killphoneMessage').hide().html('<label class="label label-danger">Wrong Phone Number</label>').show(300);
 					}
 				});
 			}
-			// 已经登录
-			// 计时交互
+			// user already login
+			// countdown interaction
 			var startTime = params['startTime'];
 			var endTime = params['endTime'];
 			var seckillId = params['seckillId'];
 			$.get(seckill.URL.now(), {}, function(result) {
 				if (result && result['success']) {
 					var nowTime = result['data'];
-					// 时间判断，计时交互
+					// check time, countdown interaction
 					seckill.countdown(seckillId, nowTime, startTime, endTime);
 				} else {
 					console.log(result['reult:'] + result);
